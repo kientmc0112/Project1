@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\Subject;
 
 class SubjectController extends Controller
 {
+    const PAGE = 10;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,11 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        return view('admin.subjects.index');
+        $courses = Course::all();
+        // $subjects = Subject::latest('id')->with('courses')->paginate(self::PAGE);
+        $subjects = Subject::with('courses')->get();
+        // print_r($subjects);
+        return view('admin.subjects.index', compact('courses','subjects'));
     }
 
     /**

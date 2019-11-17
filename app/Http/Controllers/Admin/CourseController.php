@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\Category;
+use App\Http\Requests\CourseRequest;
 
 class CourseController extends Controller
 {
+    const PAGE =10;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,26 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('admin.courses.index');
+        $courses = Course::latest('id')->with('category')->paginate(self::PAGE);
+        return view('admin.courses.index', compact('courses'));
+    }
+
+    /**
+     * Get the sub categories.
+     * 
+     * @param int $parent_id
+     * @return mix
+     */
+    private function getSubCategories($parent_id, $ignore_id=null)
+    {
+        $categories = Category::where('parent_id', $parent_id)
+            ->where('id', '<>', $ignore_id)
+            ->get()
+            ->map(function($query) use($ignore_id){
+                $query->sub = $this->getSubCategories($query->id, $ignore_id);
+                return $query;
+            });
+        return $categories;
     }
 
     /**
@@ -24,7 +47,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.index');
+        $categories = $this->getSubCategories(0);
+        return view('admin.courses.create',compact('categories'));
     }
 
     /**
@@ -33,9 +57,19 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        //
+        $course = new Course;
+        $attributes = [
+            'category_id' => $request->get('category_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'status' => $request->get('status'),
+        ];
+        // print_r($attributes);
+        $course->create($attributes);
+
+        return redirect()->route('admin.courses.index')->with('alert', trans('setting.add_course_success'));
     }
 
     /**
@@ -57,7 +91,10 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.courses.index');
+        
+        $course = Course::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.courses.edit', compact('course','categories'));
     }
 
     /**
@@ -67,9 +104,17 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request, $id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $attributes = [
+            'category_id' => $request->get('category_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+            'status' => $request->get('status'),
+        ];
+
+        return redirect()->route('admin.courses.index')->with('alert', trans('setting.edit_course_success'));
     }
 
     /**
@@ -80,6 +125,8 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $course->delete();
+        return redirect()->route('admin.courses.index')->with('alert', trans('setting.delete_course_success'));
     }
 }

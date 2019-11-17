@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,27 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        $categories = $this->getSubCategories(0);
+        // print_r($categories);die;
+        return view('admin.categories.index', compact('categories'));
+    }
+
+    /**
+     * Get the sub categories.
+     * 
+     * @param int $parent_id
+     * @return mix
+     */
+    private function getSubCategories($parent_id, $ignore_id=null)
+    {
+        $categories = Category::where('parent_id', $parent_id)
+            ->where('id', '<>', $ignore_id)
+            ->get()
+            ->map(function($query) use($ignore_id){
+                $query->sub = $this->getSubCategories($query->id, $ignore_id);
+                return $query;
+            });
+        return $categories;
     }
 
     /**
@@ -24,7 +46,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = $this->getSubCategories(0);
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -33,9 +56,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = new Category;
+        $category->create([
+            'parent_id' => $request->get('parent_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+        
+        return redirect()->route('admin.categories.index')->with('alert', trans('setting.add_category_success'));
     }
 
     /**
@@ -57,7 +87,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.categories.edit');
+        $category = Category::findOrFail($id);
+        $categories = $this->getSubCategories(0, $id);
+        return view('admin.categories.edit',compact('categories','category'));
     }
 
     /**
@@ -67,9 +99,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update([
+            'parent_id' => $request->get('parent_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+        
+        return redirect()->route('admin.categories.index')->with('alert', trans('setting.edit_category_success'));
     }
 
     /**
@@ -80,6 +119,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('alert', trans('setting.delete_category_success'));
     }
 }
