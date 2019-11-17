@@ -18,10 +18,9 @@ class SubjectController extends Controller
     public function index()
     {
         $courses = Course::all();
-        // $subjects = Subject::latest('id')->with('courses')->paginate(self::PAGE);
-        $subjects = Subject::with('courses')->get();
-        // print_r($subjects);
-        return view('admin.subjects.index', compact('courses','subjects'));
+        $subjects = Subject::latest('id')->with('courses')->paginate(self::PAGE);
+
+        return view('admin.subjects.index', compact('courses', 'subjects'));
     }
 
     /**

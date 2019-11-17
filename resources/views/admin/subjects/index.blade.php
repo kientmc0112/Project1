@@ -29,7 +29,7 @@
                                     <div class="panel-body">
                                         <div class="bootstrap-table">
                                             <div class="table-responsive">
-                                                <a href="addproduct.html" class="btn btn-primary">Thêm sản phẩm</a>
+                                                <a href="{{ route('admin.subjects.create') }}" class="btn btn-primary">Thêm sản phẩm</a>
                                                 <table class="table table-bordered" style="margin-top:20px;">
                                                     <thead>
                                                         <tr class="bg-primary">
@@ -61,15 +61,26 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                {{ $subject->courses->name }}    
+                                                                @foreach ($subject->courses as $course)
+                                                                {{ $course->name }}
+                                                                @endforeach
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="btn btn-success"><i
-                                                                        class="fa fa-pencil"
-                                                                        aria-hidden="true"></i>Start</a>
+                                                                <a href="#" class="btn @if ($course->status == 0)
+                                                                            btn-success
+                                                                        @else
+                                                                            btn-warning
+                                                                        @endif "><i class="fa fa-pencil"
+                                                                        aria-hidden="true"></i>
+                                                                    @if ($course->status == 0)
+                                                                    {{ trans('setting.open') }}
+                                                                    @else
+                                                                    {{ trans('setting.waiting') }}
+                                                                    @endif
+                                                                </a>
                                                             </td>
                                                             <td>
-                                                                <p>Course Gr</p>
+                                                                <p>{{ $subject->description }}</p>
                                                             </td>
                                                             <td>
                                                                 <a href="#" class="btn btn-warning"><i

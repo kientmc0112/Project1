@@ -49488,6 +49488,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/courses.js":
+/*!*********************************!*\
+  !*** ./resources/js/courses.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  var i = 1;
+  $('#add-course').click(function () {
+    i++;
+    $('#input-courses').append('<tr id="row' + i + '" ><td><select class="form-control" name="course_id[]"><option>----ROOT----</option></select></td><td><button class="btn btn-danger btn-remove"id="' + i + '" type="button" name="add"><i class="far fa-trash-alt"></i></button></td></tr>');
+    $('.btn-remove').click(function () {
+      var button_id = $this.attr("id");
+      $("#row" + button_id + "").remove();
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/logout.js":
 /*!********************************!*\
   !*** ./resources/js/logout.js ***!
@@ -49516,14 +49537,15 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/sass/app.scss ***!
-  \**************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/sass/app.scss ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/logout.js */"./resources/js/logout.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/courses.js */"./resources/js/courses.js");
 module.exports = __webpack_require__(/*! /home/chitt/Desktop/project1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
