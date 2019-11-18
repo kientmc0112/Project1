@@ -29,7 +29,8 @@
                                     <div class="panel-body">
                                         <div class="bootstrap-table">
                                             <div class="table-responsive">
-                                                <a href="{{ route('admin.subjects.create') }}" class="btn btn-primary">Thêm sản phẩm</a>
+                                                <a href="{{ route('admin.subjects.create') }}"
+                                                    class="btn btn-primary">Thêm sản phẩm</a>
                                                 <table class="table table-bordered" style="margin-top:20px;">
                                                     <thead>
                                                         <tr class="bg-primary">
@@ -66,27 +67,26 @@
                                                                 @endforeach
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="btn @if ($course->status == 0)
-                                                                            btn-success
-                                                                        @else
-                                                                            btn-warning
-                                                                        @endif "><i class="fa fa-pencil"
-                                                                        aria-hidden="true"></i>
-                                                                    @if ($course->status == 0)
-                                                                    {{ trans('setting.open') }}
-                                                                    @else
-                                                                    {{ trans('setting.waiting') }}
-                                                                    @endif
-                                                                </a>
+                                                                @if ($subject->status == false)
+                                                                    <button class="btn btn-success">Open</button>
+                                                                @else
+                                                                    <button class="btn btn-warning">Waiting</button>
+                                                                @endif
                                                             </td>
                                                             <td>
                                                                 <p>{{ $subject->description }}</p>
                                                             </td>
                                                             <td>
-                                                                <a href="#" class="btn btn-warning"><i
-                                                                        class="fas fa-edit" aria-hidden="true"></i></a>
-                                                                <a href="#" class="btn btn-danger"><i
-                                                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                                                                <form action="{{ route('admin.subjects.destroy', $subject->id) }}" method="post">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <a href="{{ route('admin.subjects.edit', $subject->id) }}" class="btn btn-warning"><i
+                                                                            class="fas fa-edit"
+                                                                            aria-hidden="true"></i></a>
+                                                                    <button type="submit" class="btn btn-danger"><i
+                                                                            class="fa fa-trash"
+                                                                            aria-hidden="true"></i></button>
+                                                                </form>
                                                             </td>
                                                         </tr>
                                                         @empty
@@ -95,15 +95,7 @@
                                                     </tbody>
                                                 </table>
                                                 <div align='right'>
-                                                    <ul class="pagination">
-                                                        <li class="page-item"><a class="page-link" href="#">Trở lại</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">tiếp
-                                                                theo</a></li>
-                                                    </ul>
+                                                    {{ $subjects->links() }}
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>

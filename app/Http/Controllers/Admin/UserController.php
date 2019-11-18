@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    const PAGE = 10;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::latest('role_id')->paginate(self::PAGE);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -44,7 +46,7 @@ class UserController extends Controller
             $attr = [
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
-                'password' => $request->get('password'),
+                'password' => bcrypt($request->get('password')),
                 'phone' => $request->get('phone'),
                 'address' => $request->get('address'),
                 'role_id' => $request->get('role_id')
@@ -54,12 +56,15 @@ class UserController extends Controller
                 $fileName = uniqid('avatar').'.'.$request->avatar->extension();
                 $request->avatar->move($destinationDir, $fileName);
                 $attr['avatar'] = '/images/avatar/'.$fileName;
+            } else {
+                $attr['avatar'] = '/images/avatar.jpg';
             }
+            
             $user->create($attr);
 
-            return redirect()->route('admin.user.index')->with('alert', trans('setting.add_user_success'));    
+            return redirect()->route('admin.users.index')->with('alert', trans('setting.add_user_success'));    
         } else {
-            return redirect()->route('admin.users.create')->with('alert', trans('setting.checkpassowrd'));
+            return redirect()->route('admin.users.create')->with('alert', trans('setting.checkpassoword'));
         }
     }
 
@@ -82,7 +87,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.users.edit');
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -94,7 +100,33 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        //
+        $password = $request->password;
+        $repassword = $request->repassword;
+        if ($password == $repassword) {
+            $user = User::findOrFail($id);
+            $attr = [
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+                'phone' => $request->get('phone'),
+                'address' => $request->get('address'),
+                'role_id' => $request->get('role_id')
+            ];
+            if ($request->hasFile('avatar')) {  
+                $destinationDir = public_path('images/avatar');
+                $fileName = uniqid('avatar').'.'.$request->avatar->extension();
+                $request->avatar->move($destinationDir, $fileName);
+                $attr['avatar'] = '/images/avatar/'.$fileName;
+            } else {
+                $attr['avatar'] = $user->avatar;
+            }
+            
+            $user->update($attr);
+
+            return redirect()->route('admin.users.index')->with('alert', trans('setting.edit_user_success'));    
+        } else {
+            return redirect()->route('admin.users.edit', $user->id)->with('alert', trans('setting.checkpassoword'));
+        }
     }
 
     /**
@@ -105,6 +137,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('alert', trans('setting.delete_user_success'));
     }
 }

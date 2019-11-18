@@ -35,32 +35,34 @@
                                                         class="fas fa-exclamation-triangle"></i>
                                                     {{ $errors->first() }}</div>
                                                 @endif
+                                                @if (session('alert'))
+                                                    <div class="alert alert-success">{{ session('alert') }}</div>
+                                                @endif
                                                 <div class="row" style="margin-bottom:40px">
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label>User Name</label>
-                                                            <input type="text" name="name" class="form-control">
+                                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>User Email</label>
-                                                            <input type="email" name="email" class="form-control">
+                                                            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>User Password</label>
-                                                            <input type="password" name="password" class="form-control">
+                                                            <input type="password" name="password" class="form-control" value="{{ old('password') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Confirm Password</label>
-                                                            <input type="password" name="repassword"
-                                                                class="form-control">
+                                                            <input type="password" name="repassword" class="form-control" value="{{ old('repassword') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Phone</label>
-                                                            <input type="number" name="phone" class="form-control">
+                                                            <input type="number" name="phone" class="form-control" value="{{ old('phone') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Adress</label>
-                                                            <input type="text" name="address" class="form-control">
+                                                            <input type="text" name="address" class="form-control" value="{{ old('address') }}">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Role</label>
@@ -80,9 +82,9 @@
                                                         <div class="form-group">
                                                             <label>Avatar</label>
                                                             <input id="img" type="file" name="avatar"
-                                                                class="form-control hidden">
+                                                                class="form-control hidden" onchange="changeImg(this)">
                                                             <img id="avatar" class="thumbnail" width="100%"
-                                                                height="350px" src="img/import-img.png">
+                                                                height="350px" src="/images/avatar.jpg">
                                                         </div>
                                                     </div>
                                                 </div>

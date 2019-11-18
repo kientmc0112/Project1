@@ -27,46 +27,27 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <table id="input-courses" class="table table-boderred">
-                                                            <tr>
-                                                                <td><select class="form-control" name="course_id[]" id="course_id">
-                                                                        @foreach ($subjects as $subject)
-                                                                            <option value="{{ $subject->id }}">---- {{ $subject->name }} ----</option>    
-                                                                        @endforeach
-                                                                    </select></td>
-                                                                <td><button class="btn btn-success"
-                                                                        id="add" type="button" name="add"><i class="fas fa-plus"></i></button>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Name</label>
-                                                        <input type="text" class="form-control" name="name" id="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Status</label>
-                                                        <select class="form-control" name="" id="">
-                                                            <option>----ROOT----</option>
-                                                            <option>Start</option>
-                                                            <option>Finish</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Subject</label>
-                                                        <select class="form-control" name="" id="">
-                                                            <option>----ROOT----</option>
-                                                            <option>Start</option>
-                                                            <option>Finish</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Description</label>
-                                                        <textarea class="form-control" name="description" id=""
-                                                            cols="30" rows="10"></textarea>
-                                                    </div>
-                                                    <button type="button" class="btn btn-primary">Thêm danh mục</button>
+                                                    <form action="{{ route('admin.subjects.store') }}" method="post">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="">Name</label>
+                                                            <input type="text" class="form-control" name="name" id="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Status</label>
+                                                            <select class="form-control" name="status" id="">
+                                                                <option value="0">Open</option>
+                                                                <option value="1">Waiting</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Description</label>
+                                                            <textarea class="form-control" name="description" id=""
+                                                                cols="30" rows="10"></textarea>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Thêm danh
+                                                            mục</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +74,6 @@
     </div>
     <!-- end content -->
     <!-- /.content-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 

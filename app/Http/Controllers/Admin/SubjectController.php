@@ -30,8 +30,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        $subjects = Subject::all();
-        return view('admin.subjects.create',compact('subjects'));
+        return view('admin.subjects.create');
     }
 
     /**
@@ -42,7 +41,15 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject;
+        $attr= [
+            'name' => $request->get('name'),
+            'status' => $request->get('status'),
+            'description' => $request->get('description'),
+        ];
+        $subject->create($attr);
+
+        return redirect()->route('admin.subjects.index')->with('alert', trans('setting.add_subject_success'));
     }
 
     /**
@@ -64,7 +71,8 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.subjects.edit');
+        $subject = Subject::findOrFail($id);
+        return view('admin.subjects.edit', compact('subject'));
     }
 
     /**
@@ -76,7 +84,15 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $attr = [
+            'name' => $request->get('name'),
+            'status' => $request->get('status'),
+            'description' => $request->get('description'),
+        ];
+        $subject->update($attr);
+
+        return redirect()->route('admin.subjects.index')->with('alert', trans('setting.edit_subject_success'));
     }
 
     /**
@@ -87,6 +103,9 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
+
+        return redirect()->route('admin.subjects.index')->with('alert', trans('setting.delete_subject_success'));
     }
 }

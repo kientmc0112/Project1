@@ -13,8 +13,8 @@ class InitSubjectSeeder extends Seeder
     {
         for ($i = 1; $i <= 10; $i++) {
             DB::table('subjects')->insert([
-                'name' => 'Course '.$i,
-                'description' => 'Course '.$i,
+                'name' => 'Subject '.$i,
+                'description' => 'Subject '.$i,
                 'status' => '0',
                 'created_at' => now(),
                 'updated_at' => now(),

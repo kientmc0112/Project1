@@ -27,96 +27,35 @@
                                         <div class="panel-body">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="">Category:</label>
-                                                        <select class="form-control" name="" id="">
-                                                            <option>----ROOT----</option>
-                                                            <option>Nam</option>
-                                                            <option>---|Áo khoác nam</option>
-                                                            <option>---|---|Áo khoác nam</option>
-                                                            <option>Nữ</option>
-                                                            <option>---|Áo khoác nữ</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Name</label>
-                                                        <input type="text" class="form-control" name="name" id="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Status</label>
-                                                        <select class="form-control" name="" id="">
-                                                            <option>----ROOT----</option>
-                                                            <option>Start</option>
-                                                            <option>Finish</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Subject</label>
-                                                        <select class="form-control" name="" id="">
-                                                            <option>----ROOT----</option>
-                                                            <option>Start</option>
-                                                            <option>Finish</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="">Description</label>
-                                                        <textarea class="form-control" name="description" id=""
-                                                            cols="30" rows="10"></textarea>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Thêm danh mục</button>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h3 style="margin: 0;"><strong>Phân cấp Menu</strong></h3>
-                                                    <div class="vertical-menu">
-                                                        <div class="item-menu active">Danh mục </div>
-                                                        <div class="item-menu"><span>Nam</span>
-                                                            <div class="category-fix">
-                                                                <a class="btn-category btn-primary"
-                                                                    href="editcategory.html"><i
-                                                                        class="fa fa-edit"></i></a>
-                                                                <a class="btn-category btn-danger" href="#"><i
-                                                                        class="fas fa-times"></i></i></a>
-                                                            </div>
+                                                    <form action="{{ route('admin.subjects.update', $subject->id) }}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <label for="">Name</label>
+                                                            <input type="text" class="form-control" name="name"
+                                                                value="{{ $subject->name }}">
                                                         </div>
-                                                        <div class="item-menu"><span>---|Áo khoác Nam</span>
-                                                            <div class="category-fix">
-                                                                <a class="btn-category btn-primary"
-                                                                    href="editcategory.html"><i
-                                                                        class="fa fa-edit"></i></a>
-                                                                <a class="btn-category btn-danger" href="#"><i
-                                                                        class="fas fa-times"></i></i></a>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <label for="">Status</label>
+                                                            <select class="form-control" name="status" id="">
+                                                                <option value="0" @if ($subject->status == false)
+                                                                    selected
+                                                                    @endif
+                                                                    >Open</option>
+                                                                <option value="1" @if ($subject->status == true)
+                                                                    selected
+                                                                    @endif>Waiting</option>
+                                                            </select>
                                                         </div>
-                                                        <div class="item-menu"><span>---|---|Áo khoác Nam (Dành cho việc
-                                                                mở
-                                                                rộng)</span>
-                                                            <div class="category-fix">
-                                                                <a class="btn-category btn-primary"
-                                                                    href="editcategory.html"><i
-                                                                        class="fa fa-edit"></i></a>
-                                                                <a class="btn-category btn-danger" href="#"><i
-                                                                        class="fas fa-times"></i></i></a>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <label for="">Description</label>
+                                                            <textarea class="form-control" name="description" id=""
+                                                                cols="30"
+                                                                rows="10">{{ $subject->description }}</textarea>
                                                         </div>
-                                                        <div class="item-menu"><span>Nữ</span>
-                                                            <div class="category-fix">
-                                                                <a class="btn-category btn-primary"
-                                                                    href="editcategory.html"><i
-                                                                        class="fa fa-edit"></i></a>
-                                                                <a class="btn-category btn-danger" href="#"><i
-                                                                        class="fas fa-times"></i></i></a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-menu"><span>---|Áo khoác Nữ</span>
-                                                            <div class="category-fix">
-                                                                <a class="btn-category btn-primary"
-                                                                    href="editcategory.html"><i
-                                                                        class="fa fa-edit"></i></a>
-                                                                <a class="btn-category btn-danger" href="#"><i
-                                                                        class="fas fa-times"></i></i></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                        <button type="submit" class="btn btn-primary">Thêm danh
+                                                            mục</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

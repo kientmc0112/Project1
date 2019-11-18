@@ -49419,6 +49419,33 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/changeimg.js":
+/*!***********************************!*\
+  !*** ./resources/js/changeimg.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function changeImg(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#avatar').attr('src', e.target.result);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$(document).ready(function () {
+  $('#avatar').click(function () {
+    $('#img').click();
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -49537,15 +49564,16 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/sass/app.scss ***!
-  \****************************************************************************************************************/
+/*!********************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/js/changeimg.js ./resources/sass/app.scss ***!
+  \********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/logout.js */"./resources/js/logout.js");
 __webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/courses.js */"./resources/js/courses.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/changeimg.js */"./resources/js/changeimg.js");
 module.exports = __webpack_require__(/*! /home/chitt/Desktop/project1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

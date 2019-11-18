@@ -24,14 +24,18 @@
                         <!--/.row-->
                         <div class="bootstrap-table">
                             <div class="table-responsive">
-                                <a href="adduser.html" class="btn btn-primary">Thêm Thành viên</a>
+                                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Thêm Thành viên</a>
+                                <hr>
+                                @if (session('alert'))
+                                    <div class="alert alert-success"><i class="fas fa-check"></i>{{ session('alert') }}</div>
+                                @endif
                                 <table class="table table-bordered" style="margin-top:20px;">
-
                                     <thead>
                                         <tr class="bg-primary">
                                             <th>ID</th>
+                                            <th>Name</th>
+                                            <th>avatar</th>
                                             <th>Email</th>
-                                            <th>Full</th>
                                             <th>Address</th>
                                             <th>Phone</th>
                                             <th>Level</th>
@@ -39,46 +43,47 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @forelse ($users as $user)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Admin@gmail.com</td>
-                                            <td>Nguyễn thế phúc</td>
-                                            <td>Thường tín</td>
-                                            <td>0356653300</td>
-                                            <td>1</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td><b>{{ $user->name }} <b></td>
+                                            <td><img id="avatar-user" src="{{ $user->avatar }}"></td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->address }}</td>
+                                            <td>{{ $user->phone }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning"><i class="fa fa-pencil"
-                                                        aria-hidden="true"></i> Sửa</a>
-                                                <a href="#" class="btn btn-danger"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i> Xóa</a>
+                                                <button class="btn 
+                                                @if ($user->role_id == false)
+                                                    btn-success    
+                                                @else
+                                                    btn-danger
+                                                @endif
+                                                ">
+                                                    @if ($user->role_id == false)
+                                                    Trainee
+                                                    @else
+                                                    Suppervisor
+                                                    @endif
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.users.destroy', $user->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ route('admin.users.edit', $user->id) }}"
+                                                        class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Admin@gmail.com</td>
-                                            <td>Nguyễn thế phúc</td>
-                                            <td>Thường tín</td>
-                                            <td>0356653300</td>
-                                            <td>1</td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning"><i class="fa fa-pencil"
-                                                        aria-hidden="true"></i> Sửa</a>
-                                                <a href="#" class="btn btn-danger"><i class="fa fa-trash"
-                                                        aria-hidden="true"></i> Xóa</a>
-                                            </td>
-                                        </tr>
+                                        @empty
 
+                                        @endforelse
                                     </tbody>
                                 </table>
                                 <div align='right'>
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Trở lại</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">tiếp theo</a></li>
-                                    </ul>
+                                    {{ $users->links() }}
                                 </div>
                             </div>
                             <div class="clearfix"></div>

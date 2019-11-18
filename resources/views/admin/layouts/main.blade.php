@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-  </div> --}} --}}
+  </div> --}}
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('bower_components/assets/admin/vendor/jquery/jquery.min.js') }}"></script>
