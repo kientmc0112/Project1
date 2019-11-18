@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -24,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -33,9 +35,32 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $password = $request->password;
+        $repassword = $request->repassword;
+        if ($password == $repassword) {
+            $user = new User;
+            $attr = [
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => $request->get('password'),
+                'phone' => $request->get('phone'),
+                'address' => $request->get('address'),
+                'role_id' => $request->get('role_id')
+            ];
+            if ($request->hasFile('avatar')) {  
+                $destinationDir = public_path('images/avatar');
+                $fileName = uniqid('avatar').'.'.$request->avatar->extension();
+                $request->avatar->move($destinationDir, $fileName);
+                $attr['avatar'] = '/images/avatar/'.$fileName;
+            }
+            $user->create($attr);
+
+            return redirect()->route('admin.user.index')->with('alert', trans('setting.add_user_success'));    
+        } else {
+            return redirect()->route('admin.users.create')->with('alert', trans('setting.checkpassowrd'));
+        }
     }
 
     /**
@@ -57,7 +82,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.users.edit');
     }
 
     /**
@@ -67,7 +92,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         //
     }
