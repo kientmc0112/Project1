@@ -30,7 +30,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('admin.subjects.create');
+        $subjects = Subject::all();
+        return view('admin.subjects.create',compact('subjects'));
     }
 
     /**

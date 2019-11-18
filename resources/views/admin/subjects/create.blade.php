@@ -30,11 +30,13 @@
                                                     <div class="form-group">
                                                         <table id="input-courses" class="table table-boderred">
                                                             <tr>
-                                                                <td><select class="form-control" name="course_id[]">
-                                                                        <option>----ROOT----</option>
+                                                                <td><select class="form-control" name="course_id[]" id="course_id">
+                                                                        @foreach ($subjects as $subject)
+                                                                            <option value="{{ $subject->id }}">---- {{ $subject->name }} ----</option>    
+                                                                        @endforeach
                                                                     </select></td>
                                                                 <td><button class="btn btn-success"
-                                                                        id="add-course" type="button" name="add"><i class="fas fa-plus"></i></button>
+                                                                        id="add" type="button" name="add"><i class="fas fa-plus"></i></button>
                                                                 </td>
                                                             </tr>
                                                         </table>
