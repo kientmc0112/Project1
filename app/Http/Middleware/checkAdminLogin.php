@@ -24,7 +24,7 @@ class checkAdminLogin
                 return redirect('/');
             }
         } else {
-            return redirect('/login');
+            return redirect()->route('getLogin');
         }
     }
 }
