@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', 'List Course')
+@section('title', 'List Subject')
 @section('content')
 <!-- content -->
 <div id="content-wrapper">
@@ -45,8 +45,8 @@
                                                                     @endforeach
                                                                 </select>
                                                             </th>
-                                                            <th>Description</th>
                                                             <th>Status</th>
+                                                            <th>Description</th>
                                                             <th width='15%'>Tùy chọn</th>
                                                         </tr>
                                                     </thead>
@@ -57,13 +57,13 @@
                                                             <td>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <p>Course Name : {{ $subject->name }}</p>
+                                                                        <p>Subject Name : {{ $subject->name }}</p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>
                                                                 @foreach ($subject->courses as $course)
-                                                                {{ $course->name }}
+                                                                <ul><li>{{ $course->name }}</li></ul>
                                                                 @endforeach
                                                             </td>
                                                             <td>

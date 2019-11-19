@@ -11,27 +11,29 @@
 |
 */
 
-Route::get('', [
-    'as' => 'admin.dashboard.index',
-    'uses' => 'DashboardController@index'
-]);
-Route::resource('categories', 'CategoryController', [
-    'as' => 'admin',
-    'parameters' => ['categories' => 'id']
-]);
-Route::resource('courses', 'CourseController', [
-    'as' => 'admin',
-    'parameters' => ['courses' => 'id']
-]);
-Route::resource('subjects', 'SubjectController', [
-    'as' => 'admin',
-    'parameters' => ['subjects' => 'id']
-]);
-Route::resource('tasks', 'TaskController', [
-    'as' => 'admin',
-    'parameters' => ['tasks' => 'id']
-]);
-Route::resource('users', 'UserController', [
-    'as' => 'admin',
-    'parameters' => ['users' => 'id']
-]);
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('', [
+        'as' => 'admin.dashboard.index',
+        'uses' => 'DashboardController@index'
+    ]);
+    Route::resource('categories', 'CategoryController', [
+        'as' => 'admin',
+        'parameters' => ['categories' => 'id']
+    ]);
+    Route::resource('courses', 'CourseController', [
+        'as' => 'admin',
+        'parameters' => ['courses' => 'id']
+    ]);
+    Route::resource('subjects', 'SubjectController', [
+        'as' => 'admin',
+        'parameters' => ['subjects' => 'id']
+    ]);
+    Route::resource('tasks', 'TaskController', [
+        'as' => 'admin',
+        'parameters' => ['tasks' => 'id']
+    ]);
+    Route::resource('users', 'UserController', [
+        'as' => 'admin',
+        'parameters' => ['users' => 'id']
+    ]);        
+});

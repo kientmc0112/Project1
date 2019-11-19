@@ -4,17 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Task;
+use App\Models\Subject;
 
 class TaskController extends Controller
 {
+    const PAGE = 10;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.tasks.index');
+    {   
+        $tasks = Task::latest('id')->with('subject')->paginate(self::PAGE);
+        return view('admin.tasks.index', compact('tasks'));
     }
 
     /**
@@ -24,7 +28,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('admin.tasks.create');
+        $subjects = Subject::all();
+        return view('admin.tasks.create', compact('subjects'));
     }
 
     /**
@@ -35,7 +40,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task;
+        $attr = [
+            'subject_id' => $request->get('subject_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ];
+        $task->create($attr);
+
+        return redirect()->route('admin.tasks.index')->with('alert', trans('setting.add_task_success'));
     }
 
     /**
@@ -57,7 +70,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.tasks.edit');
+        $task = Task::findOrFail($id);
+        $subjects = Subject::all();
+        return view('admin.tasks.edit', compact('subjects','task'));
     }
 
     /**
@@ -69,7 +84,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $attr = [
+            'subject_id' => $request->get('subject_id'),
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ];
+        $task->update($attr);
+
+        return redirect()->route('admin.tasks.index')->with('alert', trans('setting.edit_task_success'));
     }
 
     /**
@@ -80,6 +103,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect()->route('admin.tasks.index')->with('alert', trans('alert', trans('setting.delete_task_success')));
     }
 }
