@@ -11,15 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    // return redirect()->route('admin.dashboard.index');
-    return view('welcome');
-});
-
-Route::get('login', function () {
-    return view('auth.login');
-});
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('getLogin');
 
 Auth::routes();
-
-
