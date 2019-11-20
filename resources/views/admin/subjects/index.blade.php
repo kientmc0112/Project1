@@ -31,69 +31,80 @@
                                             <div class="table-responsive">
                                                 <a href="{{ route('admin.subjects.create') }}"
                                                     class="btn btn-primary">Thêm sản phẩm</a>
-                                                <table class="table table-bordered" style="margin-top:20px;">
-                                                    <thead>
-                                                        <tr class="bg-primary">
-                                                            <th>ID</th>
-                                                            <th>Name</th>
-                                                            <th>
-                                                                <select id="courses_option" class="form-control">
-                                                                    <option>Courses</option>
-                                                                    @foreach ($courses as $course)
-                                                                    <option value="{{ $course->id }}">
-                                                                        {{ $course->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </th>
-                                                            <th>Status</th>
-                                                            <th>Description</th>
-                                                            <th width='15%'>Tùy chọn</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @forelse ($subjects as $subject)
-                                                        <tr>
-                                                            <td>{{ $subject->id }}</td>
-                                                            <td>
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <p>Subject Name : {{ $subject->name }}</p>
+                                                <form method="post">
+                                                    @csrf
+                                                    <table class="table table-bordered" style="margin-top:20px;">
+                                                        <thead>
+                                                            <tr class="bg-primary">
+                                                                <th>ID</th>
+                                                                <th>Name</th>
+                                                                <th>
+                                                                    <select id="courses_option" class="form-control"
+                                                                        name="course_id"
+                                                                        onchange=" return optionCourses()">
+                                                                        <option>Courses</option>
+                                                                        @foreach ($courses as $course)
+                                                                        <option value="{{ $course->id }}">
+                                                                            {{ $course->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    <button id="btn-courses-option" class="d-none" type="submit">fill</button>
+                                                                </th>
+                                                                <th>Status</th>
+                                                                <th>Description</th>
+                                                                <th width='15%'>Tùy chọn</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @forelse ($subjects as $subject)
+                                                            <tr>
+                                                                <td>{{ $subject->id }}</td>
+                                                                <td>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <p>Subject Name : {{ $subject->name }}</p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                @foreach ($subject->courses as $course)
-                                                                <ul><li>{{ $course->name }}</li></ul>
-                                                                @endforeach
-                                                            </td>
-                                                            <td>
-                                                                @if ($subject->status == false)
+                                                                </td>
+                                                                <td>
+                                                                    @foreach ($subject->courses as $course)
+                                                                    <ul>
+                                                                        <li>{{ $course->name }}</li>
+                                                                    </ul>
+                                                                    @endforeach
+                                                                </td>
+                                                                <td>
+                                                                    @if ($subject->status == false)
                                                                     <button class="btn btn-success">Open</button>
-                                                                @else
+                                                                    @else
                                                                     <button class="btn btn-warning">Waiting</button>
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                <p>{{ $subject->description }}</p>
-                                                            </td>
-                                                            <td>
-                                                                <form action="{{ route('admin.subjects.destroy', $subject->id) }}" method="post">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <a href="{{ route('admin.subjects.edit', $subject->id) }}" class="btn btn-warning"><i
-                                                                            class="fas fa-edit"
-                                                                            aria-hidden="true"></i></a>
-                                                                    <button type="submit" class="btn btn-danger"><i
-                                                                            class="fa fa-trash"
-                                                                            aria-hidden="true"></i></button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
-                                                        @empty
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <p>{{ $subject->description }}</p>
+                                                                </td>
+                                                                <td>
+                                                                    {{-- <form
+                                                                        action="{{ route('admin.subjects.destroy', $subject->id) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <a href="{{ route('admin.subjects.edit', $subject->id) }}"
+                                                                            class="btn btn-warning"><i
+                                                                                class="fas fa-edit"
+                                                                                aria-hidden="true"></i></a>
+                                                                        <button type="submit" class="btn btn-danger"><i
+                                                                                class="fa fa-trash"
+                                                                                aria-hidden="true"></i></button>
+                                                                    </form> --}}
+                                                                </td>
+                                                            </tr>
+                                                            @empty
 
-                                                        @endforelse
-                                                    </tbody>
-                                                </table>
+                                                            @endforelse
+                                                        </tbody>
+                                                    </table>
+                                                </form>
                                                 <div align='right'>
                                                     {{ $subjects->links() }}
                                                 </div>

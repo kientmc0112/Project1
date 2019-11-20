@@ -1,6 +1,6 @@
 @extends('client.layouts.main')
 @section('content')
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('bower_components/bower_FTMS/images/bg/bg3.jpg') }}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('bower_components/assets-client/images/bg/bg3.jpg') }}">
         <div class="container pt-70 pb-20">
             <div class="section-content">
                 <div class="row">
@@ -23,7 +23,7 @@
                 <div class="col-md-9 blog-pull-right">
                     <div class="row mb-15">
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/bower_FTMS/images/project/lg1.jpg') }}" class="img-fullwidth"></div>
+                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/assets-client/images/project/lg1.jpg') }}" class="img-fullwidth"></div>
                         </div>
                         <div class="col-sm-6 col-md-8">
                             <h4 class="line-bottom mt-0 mt-sm-20">Accounting Technologies</h4>
@@ -41,7 +41,7 @@
                     <hr>
                     <div class="row mb-15">
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/bower_FTMS/images/project/lg2.jpg') }}" class="img-fullwidth"></div>
+                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/assets-client/images/project/lg2.jpg') }}" class="img-fullwidth"></div>
                         </div>
                         <div class="col-sm-6 col-md-8">
                             <h4 class="line-bottom mt-0 mt-sm-20">Development Studies</h4>
@@ -59,7 +59,7 @@
                     <hr>
                     <div class="row mb-15">
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/bower_FTMS/images/project/lg3.jpg') }}" class="img-fullwidth"></div>
+                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/assets-client/images/project/lg3.jpg') }}" class="img-fullwidth"></div>
                         </div>
                         <div class="col-sm-6 col-md-8">
                             <h4 class="line-bottom mt-0 mt-sm-20">Modern Technologies</h4>
@@ -77,7 +77,7 @@
                     <hr>
                     <div class="row mb-15">
                         <div class="col-sm-6 col-md-4">
-                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/bower_FTMS/images/project/lg4.jpg') }}" class="img-fullwidth"></div>
+                            <div class="thumb"> <img alt="featured project" src="{{ asset('bower_components/assets-client/images/project/lg4.jpg') }}" class="img-fullwidth"></div>
                         </div>
                         <div class="col-sm-6 col-md-8">
                             <h4 class="line-bottom mt-0 mt-sm-20">Computer Technologies</h4>

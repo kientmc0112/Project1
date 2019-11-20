@@ -58,9 +58,14 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $conditions = [];
+        if ($request->course_id) {
+            $conditions[] = ['course_id','=',$request->course_id];
+        }
+        $subjects = Subject::with('course_subject')->where($conditions)->get();
+        return view('admin.subjects.index', compact('subjects'));
     }
 
     /**

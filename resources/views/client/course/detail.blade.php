@@ -1,6 +1,6 @@
 @extends('client.layouts.main')
 @section('content')
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('bower_components/bower_FTMS/images/bg/bg3.jpg') }}">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{{ asset('bower_components/assets-client/images/bg/bg3.jpg') }}">
         <div class="container pt-70 pb-20">
             <!-- Section Content -->
             <div class="section-content">
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-8 blog-pull-right">
                     <div class="single-service">
-                        <img src="{{ asset('bower_components/bower_FTMS/images/services/lg9.jpg') }}" alt="">
+                        <img src="{{ asset('bower_components/assets-client/images/services/lg9.jpg') }}" alt="">
                         <h3 class="text-theme-colored">Chemical Engineering</h3>
                         <h5><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo unde, <span class="text-theme-color-2">chemical engineering</span> corporis dolorum blanditiis ullam officia <span class="text-theme-color-2">our university </span>natus minima fugiat repellat! Corrupti voluptatibus aperiam voluptatem. Exercitationem, placeat, cupiditate.</em></h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore suscipit, inventore aliquid incidunt, quasi error! Natus esse rem eaque asperiores eligendi dicta quidem iure, excepturi doloremque eius neque autem sint error qui tenetur, modi provident aut, maiores laudantium reiciendis expedita. Eligendi</p>

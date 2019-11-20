@@ -49552,6 +49552,21 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/js/option.js":
+/*!********************************!*\
+  !*** ./resources/js/option.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $('#courses_option').click(function () {
+    $('#btn-courses-option').click();
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49564,17 +49579,18 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/js/changeimg.js ./resources/sass/app.scss ***!
-  \********************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/js/changeimg.js ./resources/js/option.js ./resources/sass/app.scss ***!
+  \*********************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/duytu/Desktop/Project1/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/duytu/Desktop/Project1/resources/js/logout.js */"./resources/js/logout.js");
-__webpack_require__(/*! /home/duytu/Desktop/Project1/resources/js/courses.js */"./resources/js/courses.js");
-__webpack_require__(/*! /home/duytu/Desktop/Project1/resources/js/changeimg.js */"./resources/js/changeimg.js");
-module.exports = __webpack_require__(/*! /home/duytu/Desktop/Project1/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/logout.js */"./resources/js/logout.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/courses.js */"./resources/js/courses.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/changeimg.js */"./resources/js/changeimg.js");
+__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/option.js */"./resources/js/option.js");
+module.exports = __webpack_require__(/*! /home/chitt/Desktop/project1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
