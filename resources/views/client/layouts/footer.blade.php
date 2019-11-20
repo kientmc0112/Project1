@@ -87,8 +87,8 @@
                         <div class="input-group">
                             <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                             <span class="input-group-btn">
-                  <button data-height="45px" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" type="submit">{{ __('subcribe') }}</button>
-                </span>
+                            <button data-height="45px" class="btn bg-theme-color-2 text-white btn-xs m-0 font-14" type="submit">{{ __('subcribe') }}</button>
+                            </span>
                         </div>
                     </form>
                 </div>

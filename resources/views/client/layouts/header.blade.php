@@ -1,4 +1,4 @@
-<div id="preloader">
+{{-- <div id="preloader">
     <div id="spinner">
         <div class="preloader-dot-loading">
             <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
@@ -6,7 +6,7 @@
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
 </div>
-<header id="header" class="header">
+ --}}<header id="header" class="header">
     <div class="header-top bg-theme-color-2 sm-text-center p-0">
         <div class="container">
             <div class="row">

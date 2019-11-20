@@ -20,5 +20,3 @@ Route::get('login', function () {
 });
 
 Auth::routes();
-
-

@@ -49336,6 +49336,35 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/ajax.js":
+/*!******************************!*\
+  !*** ./resources/js/ajax.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('#mailchimp-subscription-form-footer').ajaxChimp({
+  callback: mailChimpCallBack,
+  url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
+});
+
+function mailChimpCallBack(resp) {
+  // Hide any previous response text
+  var $mailchimpform = $('#mailchimp-subscription-form-footer'),
+      $response = '';
+  $mailchimpform.children(".alert").remove();
+
+  if (resp.result === 'success') {
+    $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+  } else if (resp.result === 'error') {
+    $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+  }
+
+  $mailchimpform.prepend($response);
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49564,17 +49593,18 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/logout.js ./resources/js/courses.js ./resources/js/changeimg.js ./resources/sass/app.scss ***!
-  \********************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/ajax.js ./resources/js/logout.js ./resources/js/courses.js ./resources/js/changeimg.js ./resources/sass/app.scss ***!
+  \*******************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/logout.js */"./resources/js/logout.js");
-__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/courses.js */"./resources/js/courses.js");
-__webpack_require__(/*! /home/chitt/Desktop/project1/resources/js/changeimg.js */"./resources/js/changeimg.js");
-module.exports = __webpack_require__(/*! /home/chitt/Desktop/project1/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/Project1/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /var/www/html/Project1/resources/js/ajax.js */"./resources/js/ajax.js");
+__webpack_require__(/*! /var/www/html/Project1/resources/js/logout.js */"./resources/js/logout.js");
+__webpack_require__(/*! /var/www/html/Project1/resources/js/courses.js */"./resources/js/courses.js");
+__webpack_require__(/*! /var/www/html/Project1/resources/js/changeimg.js */"./resources/js/changeimg.js");
+module.exports = __webpack_require__(/*! /var/www/html/Project1/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

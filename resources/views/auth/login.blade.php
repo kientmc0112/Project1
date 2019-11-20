@@ -1,73 +1,168 @@
-@extends('login.app')
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<!-- Mirrored from thememascot.net/demo/personal/s/studypress/v6.0/demo/form-login-style2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Dec 2018 20:04:02 GMT -->
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<head>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="StudyPress | Education & Courses HTML Template" />
+    <meta name="keywords" content="academy, course, education, education html theme, elearning, learning," />
+    <meta name="author" content="ThemeMascot" />
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <!-- Page Title -->
+    <title>StudyPress | Education & Courses HTML Template</title>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    <!-- Favicon and Touch Icons -->
+    <link href="{{ asset('bower_components/bower_FTMS/images/favicon.png') }}" rel="shortcut icon" type="image/png">
+    <link href="{{ asset('bower_components/bower_FTMS/images/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('bower_components/bower_FTMS/images/apple-touch-icon-72x72.png') }}" rel="apple-touch-icon"
+        sizes="72x72">
+    <link href="{{ asset('bower_components/bower_FTMS/images/apple-touch-icon-114x114.png') }}"
+        rel="apple-touch-icon" sizes="114x114">
+    <link href="{{ asset('bower_components/bower_FTMS/images/apple-touch-icon-144x144.png') }}"
+        rel="apple-touch-icon" sizes="144x144">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+    <!-- Stylesheet -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bower_components/bower_FTMS/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bower_components/bower_FTMS/css/animate.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bower_components/bower_FTMS/css/css-plugin-collections.css') }}" rel="stylesheet" />
+    <!-- CSS | menuzord megamenu skins -->
+    <link id="menuzord-menu-skins"
+        href="{{ asset('bower_components/bower_FTMS/css/menuzord-skins/menuzord-rounded-boxed.css') }}"
+        rel="stylesheet" />
+    <!-- CSS | Main style file -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/style-main.css') }}" rel="stylesheet" type="text/css">
+    <!-- CSS | Preloader Styles -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/preloader.css') }}" rel="stylesheet" type="text/css">
+    <!-- CSS | Custom Margin Padding Collection -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/custom-bootstrap-margin-padding.css') }}" rel="stylesheet"
+        type="text/css">
+    <!-- CSS | Responsive media queries -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/responsive.css') }}" rel="stylesheet" type="text/css">
+    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+    {{-- <!-- <link href="{{ asset('bower_components/bower_FTMS/css/style.css') }}" rel="stylesheet" type="text/css"> --> --}}
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+    <!-- CSS | Theme Color -->
+    <link href="{{ asset('bower_components/bower_FTMS/css/colors/theme-skin-color-set-1.css') }}" rel="stylesheet"
+        type="text/css">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    <!-- external javascripts -->
+    <script src="{{ asset('bower_components/bower_FTMS/js/jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bower_FTMS/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bower_components/bower_FTMS/js/bootstrap.min.js') }}"></script>
+    <!-- JS | jquery plugin collection for this theme -->
+    <script src="{{ asset('bower_components/bower_FTMS/js/jquery-plugin-collection.js') }}"></script>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js') }}"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
+<![endif]-->
+</head>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+<body class="">
+    <div id="wrapper" class="clearfix">
+        <!-- preloader -->
+        <div id="preloader">
+            <div id="spinner">
+                <div class="preloader-dot-loading">
+                    <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+                </div>
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+        </div>
+
+        <!-- start main-content -->
+        <div class="main-content">
+            <!-- Section: home -->
+            <section id="home" class="divider parallax fullscreen layer-overlay overlay-white-9"
+                data-bg-img="{{ asset('bower_components/bower_FTMS/images/bg/bg1.jpg') }}">
+                <div class="display-table">
+                    <div class="display-table-cell">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-md-push-3">
+                                    <div class="text-center mb-60"><a href="#" class=""><img alt=""
+                                                src="{{ asset('bower_components/bower_FTMS/images/logo-wide.png') }}"></a>
+                                    </div>
+                                    <h4 class="text-theme-colored mt-0 pt-5"> Login</h4>
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        {{ $errors->first() }}</div>
+                                    @endif
+                                    <form name="login-form" class="form-transparent clearfix" method="POST"
+                                        action="{{ route('login') }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="form_username_email">Username/Email</label>
+                                                <input id="email" type="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    name="email" value="{{ old('email') }}" required
+                                                    autocomplete="email" autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="form_password">Password</label>
+                                                <input id="password" type="password"
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    name="password" required autocomplete="current-password">
+                                            </div>
+                                        </div>
+                                        <div class="checkbox pull-left mt-15">
+                                            <label for="form_checkbox">
+                                              <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                Remember me </label>
+                                        </div>
+                                        <div class="form-group pull-right mt-10">
+                                            <button type="submit" class="btn btn-dark btn-sm">Login</button>
+                                        </div>
+                                        <div class="clear text-center pt-10">
+                                            <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your
+                                                Password?</a>
+                                        </div>
+                                        <div class="clear text-center pt-10">
+                                            <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#"
+                                                data-bg-color="#3b5998">Login with facebook</a>
+                                            <a class="btn btn-dark btn-lg btn-block no-border" href="#"
+                                                data-bg-color="#00acee">Login with twitter</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- end main-content -->
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+        <!-- Footer -->
+        <footer id="footer" class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="mb-0">Copyright ©2016 KodeSolution. All Rights Reserved</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
+        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     </div>
-</div>
-@endsection
+    <!-- end wrapper -->
+
+    <!-- Footer Scripts -->
+    <!-- JS | Custom script for all pages -->
+    <script src="{{ asset('bower_components/bower_FTMS/js/custom.js') }}"></script>
+
+</body>
+
+<!-- Mirrored from thememascot.net/demo/personal/s/studypress/v6.0/demo/form-login-style2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Dec 2018 20:04:02 GMT -->
+
+</html>

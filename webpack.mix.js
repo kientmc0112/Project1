@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js([
         'resources/js/app.js',
+        'resources/js/ajax.js',
         'resources/js/logout.js',
         'resources/js/courses.js',
         'resources/js/changeimg.js',

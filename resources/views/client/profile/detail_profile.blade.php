@@ -27,13 +27,15 @@
                             <img src="{{ asset('bower_components/bower_FTMS/images/about/profile1.jpg') }}" alt="">
                         </div>
                         <div class="info p-20 bg-black-333">
-                            <h4 class="text-uppercase text-white">Jacob Smith</h4>
+                            <h4 class="text-uppercase text-white">{{ $user->name}}</h4>
                             <p class="text-gray-silver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus.</p>
                             <ul class="list angle-double-right m-0">
+                                <li class="text-gray-silver"><strong class="text-gray-lighter">Phone</strong>
+                                    <br>{{ $user->phone }}</li>
                                 <li class="mt-0 text-gray-silver"><strong class="text-gray-lighter">Email</strong>
-                                    <br> smith@yourdomain.com</li>
-                                <li class="text-gray-silver"><strong class="text-gray-lighter">Web</strong>
-                                    <br> www.yourdomain.com</li>
+                                    <br>{{ $user->email }}</li>
+                                <li class="text-gray-silver"><strong class="text-gray-lighter">Address</strong>
+                                    <br>{{ $user->address}}</li>
                             </ul>
                             <ul class="styled-icons icon-gray icon-circled icon-sm mt-15 mb-15">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -47,8 +48,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
-        return view('client.profile.edit_profile')->with('task', $task);
+        return view('client.profile.detail_profile', compact('user'));
     }
 
     /**
