@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['checkAdminLogin','auth']], function () {
+// Route::group(['middleware' => ['checkAdminLogin','auth']], function () {
     Route::get('', [
         'as' => 'admin.dashboard.index',
         'uses' => 'DashboardController@index'
@@ -36,4 +36,5 @@ Route::group(['middleware' => ['checkAdminLogin','auth']], function () {
         'as' => 'admin',
         'parameters' => ['users' => 'id']
     ]);
-});
+    Route::post('subjects','SubjectController@show');
+// });

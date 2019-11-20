@@ -16,5 +16,6 @@ mix.js([
         'resources/js/logout.js',
         'resources/js/courses.js',
         'resources/js/changeimg.js',
+        'resources/js/option.js',
    ], 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
